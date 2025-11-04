@@ -1,0 +1,7 @@
+.idea/
+.venv/
+.DS_Store
+test/
+data/
+*/__pycache__/
+temp_avatarhttp:
