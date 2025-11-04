@@ -33,7 +33,7 @@ IMAGE_FOLDER = path + "data/memes"
 DOMAIN = conf.get()["api"]["domain"]
 PORT = conf.get()["api"]["port"]
 
-@shyeri_meme_app.post("/shyeri_meme/")
+@shyeri_meme_app.post("/")
 async def shyeri_meme_deal(request: Request):
     try:
         form_data = await request.json()
@@ -99,7 +99,7 @@ async def shyeri_meme_deal(request: Request):
 
 
 # 添加获取可用背景关键字列表的接口
-@shyeri_meme_app.get("/shyri_meme/list")
+@shyeri_meme_app.get("/list")
 async def get_background_list():
     """获取所有可用的背景图片关键字列表
     

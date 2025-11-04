@@ -95,7 +95,7 @@ python main.py
 ## API 文档
 
 ### 生成表情包
-- **URL**: `/shyeri_meme/`
+- **URL**: `/`
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 - **请求参数**:
@@ -132,7 +132,7 @@ python main.py
   - 500: 服务器内部错误
 
 ### 获取背景图片列表
-- **URL**: `/shyri_meme/list`
+- **URL**: `/list`
 - **Method**: GET
 - **描述**: 获取所有可用的背景图片关键字列表
 - **返回示例**:
