@@ -38,6 +38,7 @@ async def shyeri_meme_deal(request: Request):
     try:
         form_data = await request.json()
     except json.JSONDecodeError:
+        log.error("请求体不包含有效的JSON数据")
         return JSONResponse(
             status_code=400,
             content={
@@ -49,6 +50,7 @@ async def shyeri_meme_deal(request: Request):
 
     # 检查必需字段是否存在
     if not all(key in form_data for key in ["background", "text"]):
+        log.error("请求{data}不包含background和text字段")
         return JSONResponse(
             status_code=400,
             content={
@@ -62,6 +64,7 @@ async def shyeri_meme_deal(request: Request):
     text = form_data["text"]
     # 检查背景图是否存在
     if background not in bg_paths:
+        log.error(f"请求{background}不是有效的background字段")
         return JSONResponse(
             status_code=400,
             content={
@@ -77,7 +80,6 @@ async def shyeri_meme_deal(request: Request):
         )
     except Exception as e:
         log.error(f"生成表情包{background}_{text}时出错: {e}")
-        print(f"生成表情包{background}_{text}时出错: {e}")
         return JSONResponse(
             status_code=500,
             content={
@@ -128,7 +130,6 @@ async def get_background_list():
     except Exception as e:
         # 记录错误日志
         log.error(f"获取背景列表失败: {e}")
-        print(f"获取背景列表失败: {e}")
         
         # 返回错误响应
         return JSONResponse(
@@ -149,9 +150,9 @@ def delete_file(path):
     try:
         if os.path.exists(path):
             os.remove(path)
-            print(f"已删除图片: {path}")
+            log.info(f"已删除图片: {path}")
     except Exception as e:
-        print(f"删除图片失败: {e}")
+        log.error(f"删除图片失败: {e}")
 
 
 # 模拟文件创建时启动删除线程
