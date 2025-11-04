@@ -98,6 +98,48 @@ async def shyeri_meme_deal(request: Request):
     })
 
 
+# 添加获取可用背景关键字列表的接口
+@shyeri_meme_app.get("/shyri_meme/list")
+async def get_background_list():
+    """获取所有可用的背景图片关键字列表
+    
+    返回值：
+        JSONResponse: 包含背景关键字列表的响应
+    """
+    try:
+        # 从配置中获取所有背景关键字
+        background_list = list(bg_paths.keys())
+        
+        # 记录日志
+        log.info(f"获取背景列表成功，共{len(background_list)}个背景")
+        
+        # 返回响应
+        return JSONResponse(
+            status_code=200,
+            content={
+                "code": 200,
+                "message": "success",
+                "data": {
+                    "background_list": background_list,
+                    "total": len(background_list)
+                }
+            }
+        )
+    except Exception as e:
+        # 记录错误日志
+        log.error(f"获取背景列表失败: {e}")
+        print(f"获取背景列表失败: {e}")
+        
+        # 返回错误响应
+        return JSONResponse(
+            status_code=500,
+            content={
+                "code": 500,
+                "message": f"获取背景列表失败: {e}",
+                "data": {}
+            }
+        )
+
 # 挂载静态目录
 shyeri_meme_app.mount("/images", StaticFiles(directory=IMAGE_FOLDER), name="images")
 
