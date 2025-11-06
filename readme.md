@@ -41,12 +41,22 @@ git clone [项目地址]
 cd ShyeriMeme
 ```
 
-### 2. 安装依赖
+### 2. 补全资源文件
+将项目中的 `resource/` 目录下的文件补全，确保所有字体文件和表情模板图片都存在。
+
+本项目不直接提供表情模板图片和字体，需要用户自行准备。
+
+图片大小建议为 800x800 像素，格式为 PNG。
+
+字体文件建议使用 TrueType 字体（.ttf 或 .ttc）。
+
+
+### 3. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. 运行服务
+### 4. 运行服务
 ```bash
 python main.py
 ```
