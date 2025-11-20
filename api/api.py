@@ -74,7 +74,8 @@ async def shyeri_meme_deal(request: Request):
             }
         )
     try:
-        ShyeriMemeDrawer.generate_meme(
+        # 调用generate_meme并获取哈希后的文件名
+        image_name = ShyeriMemeDrawer.generate_meme(
             resource=background,
             text=text,
         )
@@ -88,14 +89,14 @@ async def shyeri_meme_deal(request: Request):
                 "data": {}
             }
         )
-    create_image_and_start_deletion(f"shyeri_meme_{background}_{text}.jpg")
+    create_image_and_start_deletion(image_name)
     return JSONResponse(
     status_code=200,
     content={
         "code": 200,
         "message": "success",
         "data": {
-            "img_url": f"http://{DOMAIN}:{PORT}/images/shyeri_meme_{background}_{text}.jpg",
+            "img_url": f"http://{DOMAIN}:{PORT}/images/{image_name}",
         }
     })
 

@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 from utils.log import Logos
+import hashlib
 
 
 class CertificateGenerator:
@@ -72,7 +73,11 @@ class CertificateGenerator:
         draw.text((x, y), text, fill=fill, font=font)
 
     def generate_meme(self, resource:str , text:str):
-        output_path = os.path.join(self.output_folder, f"shyeri_meme_{resource}_{text}.jpg")
+        # 对resource和text字段进行MD5哈希处理
+        resource_hash = hashlib.md5(resource.encode('utf-8')).hexdigest()
+        text_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
+        # 使用哈希值作为文件名
+        output_path = os.path.join(self.output_folder, f"shyeri_meme_{resource_hash}_{text_hash}.jpg")
         background_path = self.resource_paths.get(resource)
         if not background_path:
             self.log.error(f"资源{resource}不存在")
@@ -98,3 +103,6 @@ class CertificateGenerator:
 
         # 保存为JPEG格式
         background.save(output_path, format='JPEG', quality=95)
+
+        # 返回生成的文件名，以便在API中使用
+        return f"shyeri_meme_{resource_hash}_{text_hash}.jpg"
