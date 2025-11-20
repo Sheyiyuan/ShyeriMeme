@@ -37,26 +37,21 @@
 
 ### 1. 克隆项目
 ```bash
-git clone [项目地址]
+# 使用 HTTPS 协议
+git clone https://github.com/Sheyiyuan/ShyeriMeme.git # HTTPS
+# 或者使用 SSH 协议，如果你不知道这是什么用上面那个
+git clone git@github.com:Sheyiyuan/ShyeriMeme.git # SSH
+
+# 进入项目目录
 cd ShyeriMeme
 ```
 
-### 2. 补全资源文件
-将项目中的 `resource/` 目录下的文件补全，确保所有字体文件和表情模板图片都存在。
-
-本项目不直接提供表情模板图片和字体，需要用户自行准备。
-
-图片大小建议为 800x800 像素，格式为 PNG。
-
-字体文件建议使用 TrueType 字体（.ttf 或 .ttc）。
-
-
-### 3. 安装依赖
+### 2. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. 运行服务
+### 3. 运行服务
 ```bash
 python main.py
 ```
@@ -187,4 +182,4 @@ python main.py
 可以修改 `drawer/meme_draw.py` 文件中的 `_draw_centered_text` 方法来自定义文字样式，包括颜色、大小、描边等。
 
 ## 许可证
-[MIT License](LICENSE)
+本项目基于[MIT License](LICENSE)传播，仅供个人学习交流使用，不拥有相关素材的版权。进行分发时应注意不违反素材版权与官方二次创造协定。
