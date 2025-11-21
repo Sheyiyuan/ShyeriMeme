@@ -19,6 +19,9 @@ shyeri_meme_app = FastAPI()
 bg_paths: dict[str, str] = conf.get()["resource"]["resource_paths"]
 chinese_font_path = conf.get()["resource"]["chinese_font_path"]
 english_font_path = conf.get()["resource"]["english_font_path"]
+# 获取过期时间配置
+IMAGE_EXPIRY_TIME = conf.get().get("storage", {}).get("image_expiry_time", 300)
+
 ShyeriMemeDrawer = CertificateGenerator(
     log=log,
     resource_paths= bg_paths,
@@ -147,7 +150,7 @@ shyeri_meme_app.mount("/images", StaticFiles(directory=IMAGE_FOLDER), name="imag
 
 # 启动定时删除线程
 def delete_file(path):
-    time.sleep(300)  # 等待300秒
+    time.sleep(IMAGE_EXPIRY_TIME)  # 使用配置中的过期时间
     try:
         if os.path.exists(path):
             os.remove(path)

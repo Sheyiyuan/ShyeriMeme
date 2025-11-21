@@ -31,10 +31,11 @@ DEFAULT_CONFIG = {
         },
         "chinese_font_path":"resource/fonts/STHeitiMedium.ttc",
         "english_font_path":"resource/fonts/Times New Roman.ttf"
+    },
+    "storage":{
+        "image_expiry_time": 300
     }
 }
 
 conf = Config(default=DEFAULT_CONFIG)
 log = Logos(name=conf.get()["name"], level=conf.get()["log"]["log_level"].upper(),output_path= conf.get()["work_dir"]+conf.get()["log"]["output_path"],output_file=conf.get()["log"]["output_file"])
-
-
