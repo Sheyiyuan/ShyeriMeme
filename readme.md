@@ -1,6 +1,6 @@
 <div align="center">
 
-# 橘雪莉表情包生成器
+<h1>橘雪莉表情包生成器</h1>
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
