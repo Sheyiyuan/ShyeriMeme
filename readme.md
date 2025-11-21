@@ -12,7 +12,7 @@
 
 ## 项目结构
 
-```
+```text
 ├── api/ # API接口定义
 ├── core/ # 核心配置和初始化
 ├── data/ # 数据存储
@@ -62,6 +62,81 @@ python main.py
 ```
 
 服务将在 `http://0.0.0.0:7210` 启动
+
+## Docker部署
+
+除了直接运行Python程序外，您还可以使用Docker来部署此项目，这将确保环境一致性并简化部署过程。
+
+### 前提条件
+
+- 安装Docker：[Docker官方安装指南](https://docs.docker.com/get-docker/)
+
+### 使用方法
+
+#### 1. 构建Docker镜像
+
+在项目根目录下执行以下命令构建Docker镜像：
+
+```bash
+docker build -t shyerimeme .
+```
+
+#### 2. 运行Docker容器
+
+使用以下命令运行容器：
+
+```bash
+docker run -d \
+  --name shyerimeme \
+  -p 7210:7210 \
+  -v $(pwd)/data:/app/data \
+  shyerimeme
+```
+
+参数说明：
+- `-d`：后台运行容器
+- `--name shyerimeme`：设置容器名称为shyerimeme
+- `-p 7210:7210`：将容器的7210端口映射到主机的7210端口
+- `-v $(pwd)/data:/app/data`：挂载数据卷，实现数据持久化
+
+#### 3. 使用Docker Compose（可选）
+
+您也可以创建一个`docker-compose.yml`文件来管理容器：
+
+```yaml
+version: '3'
+services:
+  shyerimeme:
+    build: .
+    container_name: shyerimeme
+    ports:
+      - "7210:7210"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+```
+
+然后使用以下命令启动服务：
+
+```bash
+docker-compose up -d
+```
+
+### Docker部署注意事项
+
+1. **配置文件位置**：
+   - 容器内部的配置文件位于`/app/data/conf/conf.json`
+   - 通过数据卷挂载，您可以在宿主机上直接修改`./data/conf/conf.json`
+
+2. **字体支持**：
+   - Docker镜像中已包含字体支持，可以正常显示中文
+   - 如果需要使用自定义字体，请确保字体文件位于正确的路径
+
+3. **数据持久化**：
+   - 通过挂载`./data`目录，确保生成的表情包、日志和配置在容器重启后不会丢失
+
+4. **域名配置**：
+   - 在生产环境中，请确保在配置文件中设置正确的域名，以便生成可访问的图片URL
 
 ## 配置说明
 
