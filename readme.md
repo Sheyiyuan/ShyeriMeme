@@ -2,20 +2,10 @@
 
 <h1 style="font-size: 2.5rem; margin-bottom: 1.5rem; font-weight: 700;">橘雪莉表情包生成器</h1>
 
-<div style="margin-bottom: 1.5rem;">
-  <a href="https://opensource.org/licenses/MIT" style="margin: 0 0.5rem;">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" style="vertical-align: middle;">
-  </a>
-  <a href="https://www.python.org/" style="margin: 0 0.5rem;">
-    <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg" alt="Python" style="vertical-align: middle;">
-  </a>
-  <a href="https://fastapi.tiangolo.com/" style="margin: 0 0.5rem;">
-    <img src="https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg" alt="FastAPI" style="vertical-align: middle;">
-  </a>
-  <a href="https://www.docker.com/" style="margin: 0 0.5rem;">
-    <img src="https://img.shields.io/badge/Docker-blue.svg" alt="Docker" style="vertical-align: middle;">
-  </a>
-</div>
+![GitHub License](https://img.shields.io/github/license/Sheyiyuan/ShyeriMeme?style=flat-square&color=green)
+![Python Version](https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python)
+![FastAPI Version](https://img.shields.io/badge/fastapi-0.100%2B-009688?style=flat-square&logo=fastapi)
+![Docker Support](https://img.shields.io/badge/docker-supported-blue?style=flat-square&logo=docker)
 
 <p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用</p>
 
