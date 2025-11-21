@@ -1,7 +1,16 @@
+<div align="center">
+
 # 橘雪莉表情包生成器
 
-一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。
+<p><b>简单·快速·低占用</b></p>
 
+<p>一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。</p>
+
+<img src="doc/shyeri_meme_75f0fa966d8246d1ba25faa636a40753_8073408ba00230cdb70801db79cc3a2d.jpg" alt="宣传图" width="50%"/>
+
+</div>
+
+---
 ## 项目特点
 
 - 支持多种橘雪莉表情模板，也可以自行扩展
@@ -217,8 +226,9 @@ docker-compose up -d
 ```
 
 - **图片示例**:
-
+<div align="center">
 <img src="doc/shyeri_meme_dcd19075165d2b689b61a6a540749d61_28bccc5e3442ca5b1c74db9399fe0c99.jpg" alt="shyeri_meme_得意_我一根手指就能扣晕你.jpg" width="50%"/>
+</div>
 
 - **错误响应**:
 
