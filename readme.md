@@ -217,7 +217,8 @@ docker-compose up -d
 ```
 
 - **图片示例**:
-![shyeri_meme_得意_我一根手指就能扣晕你.jpg](doc/shyeri_meme_%E5%BE%97%E6%84%8F_%E6%88%91%E4%B8%80%E6%A0%B9%E6%89%8B%E6%8C%87%E5%B0%B1%E8%83%BD%E6%89%A3%E6%99%95%E4%BD%A0.jpg)
+
+<img src="doc/shyeri_meme_dcd19075165d2b689b61a6a540749d61_28bccc5e3442ca5b1c74db9399fe0c99.jpg" alt="shyeri_meme_得意_我一根手指就能扣晕你.jpg" width="50%"/>
 
 - **错误响应**:
 
