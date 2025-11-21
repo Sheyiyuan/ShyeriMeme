@@ -7,7 +7,7 @@
 ![FastAPI Version](https://img.shields.io/badge/fastapi-0.100%2B-009688?style=flat-square&logo=fastapi)
 ![Docker Support](https://img.shields.io/badge/docker-supported-blue?style=flat-square&logo=docker)
 
-<p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用</p>
+<p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用·可扩展</p>
 
 <p style="font-size: 1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2rem;">一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。</p>
 
@@ -20,9 +20,11 @@
 
 - 支持多种橘雪莉表情模板，也可以自行扩展
 - 文字自动居中且带黑色描边，确保在任何背景下清晰可见
-- 简单易用的 API 接口
+- 简单易用而高效的 API 接口
+- 自带图床，支持更多应用场景
 - 自动清理临时生成的图片，节省存储空间
-- 完整的配置系统，支持自定义字体和资源路径
+- 完整的配置系统，支持自定义字体和资源路径，可根据需求灵活调整
+- 完善的日志系统，记录运行日志，方便排查问题
 
 ## 项目结构
 
@@ -264,7 +266,7 @@ docker-compose up -d
 
 ### 访问生成的图片
 
-生成的图片可 以通过返回的 `img_url` 直接访问，图片会在生成后根据配置的过期时间自动删除（默认5分钟）。
+生成的图片可 以通过返回的 `img_url` 直接访问，图片会在生成后根据配置的过期时间自动删除（默认 5 分钟）。
 
 ## 字体说明
 
@@ -283,7 +285,7 @@ docker-compose up -d
 
 ### 1. 为什么生成的图片在一段时间后无法访问？
 
-为了节省存储空间，生成的图片会在配置文件中设置的过期时间后自动删除（默认5分钟）。请及时保存需要的图片。
+为了节省存储空间，生成的图片会在配置文件中设置的过期时间后自动删除（默认 5 分钟）。请及时保存需要的图片。
 
 ### 2. 如何添加新的表情模板？
 
@@ -295,4 +297,4 @@ docker-compose up -d
 可以修改 `drawer/meme_draw.py` 文件中的 `_draw_centered_text` 方法来自定义文字样式，包括颜色、大小、描边等。
 
 ## 许可证
-本项目基于[MIT License](LICENSE)传播，仅供个人学习交流使用，不拥有相关素材的版权。进行分发时应注意不违反素材版权与官方二次创造协定。
+本项目基于 [MIT License](LICENSE) 传播，仅供个人学习交流使用，不拥有相关素材的版权。进行分发时应注意不违反素材版权与官方二次创造协定。
