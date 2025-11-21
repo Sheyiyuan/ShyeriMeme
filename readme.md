@@ -1,6 +1,6 @@
 # 橘雪莉表情包生成器
 
-一个基于FastAPI的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。
+一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。
 
 ## 项目特点
 
@@ -65,7 +65,7 @@ python main.py
 
 ## Docker部署
 
-除了直接运行Python程序外，您还可以使用Docker来部署此项目，这将确保环境一致性并简化部署过程。
+除了直接运行Python程序外，您还可以使用 Docker 来部署此项目，这将确保环境一致性并简化部署过程。
 
 ### 前提条件
 
@@ -73,15 +73,15 @@ python main.py
 
 ### 使用方法
 
-#### 1. 构建Docker镜像
+#### 1. 构建 Docker 镜像
 
-在项目根目录下执行以下命令构建Docker镜像：
+在项目根目录下执行以下命令构建 Docker 镜像：
 
 ```bash
 docker build -t shyerimeme .
 ```
 
-#### 2. 运行Docker容器
+#### 2. 运行 Docker 容器
 
 使用以下命令运行容器：
 
@@ -95,13 +95,13 @@ docker run -d \
 
 参数说明：
 - `-d`：后台运行容器
-- `--name shyerimeme`：设置容器名称为shyerimeme
+- `--name shyerimeme`：设置容器名称为 `shyerimeme`
 - `-p 7210:7210`：将容器的7210端口映射到主机的7210端口
 - `-v $(pwd)/data:/app/data`：挂载数据卷，实现数据持久化
 
-#### 3. 使用Docker Compose（可选）
+#### 3. 使用 Docker Compose（可选）
 
-您也可以创建一个`docker-compose.yml`文件来管理容器：
+您也可以创建一个 `docker-compose.yml` 文件来管理容器：
 
 ```yaml
 version: '3'
@@ -122,18 +122,18 @@ services:
 docker-compose up -d
 ```
 
-### Docker部署注意事项
+### Docker 部署注意事项
 
 1. **配置文件位置**：
-   - 容器内部的配置文件位于`/app/data/conf/conf.json`
-   - 通过数据卷挂载，您可以在宿主机上直接修改`./data/conf/conf.json`
+   - 容器内部的配置文件位于 `/app/data/conf/conf.json`
+   - 通过数据卷挂载，您可以在宿主机上直接修改 `./data/conf/conf.json`
 
 2. **字体支持**：
-   - Docker镜像中已包含字体支持，可以正常显示中文
+   - Docker 镜像中已包含字体支持，可以正常显示中文
    - 如果需要使用自定义字体，请确保字体文件位于正确的路径
 
 3. **数据持久化**：
-   - 通过挂载`./data`目录，确保生成的表情包、日志和配置在容器重启后不会丢失
+   - 通过挂载 `./data` 目录，确保生成的表情包、日志和配置在容器重启后不会丢失
 
 4. **域名配置**：
    - 在生产环境中，请确保在配置文件中设置正确的域名，以便生成可访问的图片URL
@@ -179,6 +179,7 @@ docker-compose up -d
 
 由于 api 返回的是图片的 url，所以需要配置域名，否则无法访问图片。
 配置文件中 `api.domain` 项需要设置为你的域名，例如 `www.example.com`。
+如果你没有域名的反向代理，你需要为 `api.domain` 项添加端口，例如 `127.0.0.1:7210`。
 
 ## API 文档
 
