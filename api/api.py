@@ -96,7 +96,7 @@ async def shyeri_meme_deal(request: Request):
         "code": 200,
         "message": "success",
         "data": {
-            "img_url": f"http://{DOMAIN}:{PORT}/images/{image_name}",
+            "img_url": f"http://{DOMAIN}/images/{image_name}",
         }
     })
 
