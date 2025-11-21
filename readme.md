@@ -1,17 +1,27 @@
-<div align="center">
+<div align="center" style="padding: 2rem; color: #2288bb; border-radius: 12px; max-width: 800px; margin: 0 auto;">
 
-<h1>橘雪莉表情包生成器</h1>
+<h1 style="font-size: 2.5rem; margin-bottom: 1.5rem; font-weight: 700;">橘雪莉表情包生成器</h1>
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg)](https://fastapi.tiangolo.com/)
-[![Docker](https://img.shields.io/badge/Docker-blue.svg)](https://www.docker.com/)
+<div style="margin-bottom: 1.5rem;">
+  <a href="https://opensource.org/licenses/MIT" style="margin: 0 0.5rem;">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" style="vertical-align: middle;">
+  </a>
+  <a href="https://www.python.org/" style="margin: 0 0.5rem;">
+    <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg" alt="Python" style="vertical-align: middle;">
+  </a>
+  <a href="https://fastapi.tiangolo.com/" style="margin: 0 0.5rem;">
+    <img src="https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg" alt="FastAPI" style="vertical-align: middle;">
+  </a>
+  <a href="https://www.docker.com/" style="margin: 0 0.5rem;">
+    <img src="https://img.shields.io/badge/Docker-blue.svg" alt="Docker" style="vertical-align: middle;">
+  </a>
+</div>
 
-<p><b>简单·快速·低占用</b></p>
+<p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用</p>
 
-<p>一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。</p>
+<p style="font-size: 1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2rem;">一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。</p>
 
-<img src="doc/shyeri_meme_75f0fa966d8246d1ba25faa636a40753_8073408ba00230cdb70801db79cc3a2d.jpg" alt="宣传图" width="50%"/>
+<img src="doc/shyeri_meme_75f0fa966d8246d1ba25faa636a40753_8073408ba00230cdb70801db79cc3a2d.jpg" alt="宣传图" width="50%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 
 </div>
 
