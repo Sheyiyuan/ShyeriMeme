@@ -3,6 +3,7 @@
 # Web框架与服务器
 fastapi==0.115.12  # FastAPI框架，用于构建Web API
 uvicorn==0.34.1    # ASGI服务器，用于运行FastAPI应用
+requests==2.32.3  # HTTP请求库，用于与外部API交互
 
 # 图像处理
 Pillow==11.2.1     # 图像处理库，用于表情包绘制
