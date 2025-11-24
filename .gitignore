@@ -6,4 +6,5 @@ data/
 */__pycache__/
 temp_avatarhttp:
 .marscode/
-.vscode/
+**/.vscode/
+**/node_modules/
