@@ -14,7 +14,7 @@ DEFAULT_CONFIG = {
         "port":7210,
         "host":"0.0.0.0",
         "token":"",
-        "domain":"www.example.com"
+        "domain":"127.0.0.1:7210"
     },
     "resource":{
         "resource_paths":{
