@@ -5,7 +5,7 @@ class Config:
     PATH = "./data/conf"
     FILE = "conf.json"
     def __init__(self, path:str=PATH, file:str=FILE, default:dict=None):
-        if default is None:
+        if default is None or default == {}:
             default = {}
         self.path = path
         self.file = file
