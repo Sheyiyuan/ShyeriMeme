@@ -52,6 +52,7 @@
 ├── utils/ # 工具类 
 │ ├── conf.py # 配置管理 
 │ └── log.py # 日志系统 
+├── webui/ # webui 界面代码
 ├── main.py # 程序入口 
 ├── requirements.txt # 依赖包列表 
 └── readme.md # 项目说明文档
@@ -443,7 +444,7 @@ docker-compose up -d
 
 ### 5. 如何修改图片过期时间？
 
-可以在配置文件中的 `storage.image_expiry_time` 项设置图片过期时间（秒）。
+可以在 webui 管理页面的系统设置中修改,也可以在配置文件中的 `storage.image_expiry_time` 项设置图片过期时间（秒）。
 
 ## 许可证
 本项目基于 [MIT License](LICENSE) 传播，仅供个人学习交流使用，不拥有相关素材的版权。进行分发时应注意不违反素材版权与官方二次创造协定。
