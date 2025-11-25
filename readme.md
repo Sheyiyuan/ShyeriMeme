@@ -9,9 +9,13 @@
 
 <p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用·可扩展</p>
 
-<p style="font-size: 1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2rem;">一个基于 FastAPI 的表情包生成后端服务，可以快速生成带有自定义文字的橘雪莉表情包。</p>
+<p style="font-size: 1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2rem;">一个基于 FastAPI 的表情包生成后端服务，配套使用 Vue 开发的 Web UI 界面，可以快速生成带有自定义文字的橘雪莉表情包。</p>
 
 <img src="doc/shyeri_meme_75f0fa966d8246d1ba25faa636a40753_8073408ba00230cdb70801db79cc3a2d.jpg" alt="宣传图" width="50%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+<p></p>
+
+<img src="doc/webui.png" alt="webui 页面" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 
 </div>
 
@@ -25,6 +29,8 @@
 - 自动清理临时生成的图片，节省存储空间
 - 完整的配置系统，支持自定义字体和资源路径，可根据需求灵活调整
 - 完善的日志系统，记录运行日志，方便排查问题
+- webui 界面，方便用户可视化操作直接使用。
+- webui 管理页面，方便运维管理。
 
 ## 项目结构
 

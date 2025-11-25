@@ -247,7 +247,7 @@ if os.path.exists(WEBUI_DIST_PATH):
             return FileResponse(index_path)
         return JSONResponse(status_code=404, content={"error": "Index file not found"})
     
-    # 为前端路由提供index.html（关键修复）
+    # 为前端路由提供index.html
     @shyeri_meme_app.get("/admin", include_in_schema=False)
     async def serve_admin():
         index_path = os.path.join(WEBUI_DIST_PATH, "index.html")
