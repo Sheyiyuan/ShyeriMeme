@@ -4,6 +4,7 @@ import socket
 import requests
 import time
 from core.core import conf
+from utils.log import setup_global_redirect
 
 PORT = conf.get()["api"]["port"]
 
@@ -27,6 +28,14 @@ def is_self_process_running(port):
     except (requests.RequestException, ValueError, KeyError):
         pass
     return False
+
+
+# 在应用启动时设置全局输出重定向
+try:
+    original_stdout, original_stderr = setup_global_redirect()
+    print("全局日志重定向已设置")
+except Exception as e:
+    print(f"设置日志重定向失败: {e}")
 
 if __name__ == '__main__':
     print(f"尝试启动服务在端口 {PORT}")

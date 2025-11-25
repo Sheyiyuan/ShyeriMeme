@@ -15,7 +15,7 @@
 
 <p></p>
 
-<img src="doc/webui.png" alt="webui 页面" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="doc/webui.webp" alt="webui 页面" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 
 </div>
 
@@ -29,8 +29,11 @@
 - 自动清理临时生成的图片，节省存储空间
 - 完整的配置系统，支持自定义字体和资源路径，可根据需求灵活调整
 - 完善的日志系统，记录运行日志，方便排查问题
-- webui 界面，方便用户可视化操作直接使用。
-- webui 管理页面，方便运维管理。
+- webui 界面，方便用户可视化操作直接使用
+- webui 管理页面，方便运维管理
+- 管理员认证系统，保护管理功能安全
+- 配置热更新，无需重启服务即可应用配置变更
+- 图片过期时间可配置，灵活控制存储空间使用
 
 ## 项目结构
 
@@ -84,6 +87,15 @@ python main.py
 ```
 
 服务将在 `http://0.0.0.0:7210` 启动
+
+### 4. 访问 Web UI
+
+打开浏览器，访问 `http://127.0.0.1:7210/webui` 即可打开 Web UI 界面。
+
+### 5. 访问管理页面
+
+打开浏览器，访问 `http://127.0.0.1:7210/webui/admin` 即可打开 Web UI 管理页面。
+首次访问管理页面时需要设置管理员密码。
 
 ## Docker部署
 
@@ -186,6 +198,8 @@ docker-compose up -d
       "慌张": "resource/shyeri_fear.png",
       "点赞": "resource/shyeri_good.png",
       "震惊": "resource/shyeri_shocked.png",
+      "害羞": "resource/shyeri_shy.png",
+      "投降": "resource/shyeri_surrender.png",
       "惊讶": "resource/shyeri_surprise.png",
       "灵机一动": "resource/shyeri_ting.png",
       "好吃": "resource/shyeri_yummy.png",
@@ -195,11 +209,42 @@ docker-compose up -d
     },
     "chinese_font_path": "resource/fonts/STHeitiMedium.ttc",
     "english_font_path": "resource/fonts/Times New Roman.ttf"
+  },
+  "storage": {
+    "image_expiry_time": 300
+  },
+  "admin": {
+    "password_hash": "9321c83cb583b2c8090fc315ed6f878e712128209be3cb01539194ec77ef9dfe",
+    "salt": "60fc419eb9aeb47afc0b373303039b30"
   }
 }
 ```
 
-由于 api 返回的是图片的 url，所以需要配置域名，否则无法访问图片。
+### 配置项说明
+
+- **name**: 项目名称
+- **work_dir**: 工作目录路径
+- **log**:
+  - **log_level**: 日志级别（debug, info, warning, error）
+  - **output_path**: 日志输出路径
+  - **output_file**: 日志文件名
+- **api**:
+  - **route_root**: API路由根路径
+  - **port**: 服务端口
+  - **host**: 服务监听地址
+  - **token**: API访问令牌（可选）
+  - **domain**: 域名配置，用于生成图片URL
+- **resource**:
+  - **resource_paths**: 表情模板图片映射关系
+  - **chinese_font_path**: 中文字体路径
+  - **english_font_path**: 英文字体路径
+- **storage**:
+  - **image_expiry_time**: 图片过期时间（秒），默认300秒（5分钟）
+- **admin**:
+  - **password_hash**: 管理员密码哈希值（自动生成，请勿手动修改）
+  - **salt**: 密码盐值（自动生成，请勿手动修改）
+
+由于 API 返回的是图片的 URL，所以需要配置域名，否则无法访问图片。
 配置文件中 `api.domain` 项需要设置为你的域名，例如 `www.example.com`。
 如果你没有域名的反向代理，你需要为 `api.domain` 项添加端口，例如 `127.0.0.1:7210`。
 
@@ -214,7 +259,7 @@ docker-compose up -d
 
 | 参数名     | 类型   | 必需 | 说明                                                                               |
 | ---------- | ------ | ---- | ---------------------------------------------------------------------------------- |
-| background | string | 是   | 表情模板名称，可选值：哭、慌张、点赞、震惊、惊讶、灵机一动、好吃、愣住、恍悟、得意 |
+| background | string | 是   | 表情模板名称，可选值：哭、慌张、点赞、震惊、害羞、投降、惊讶、灵机一动、好吃、愣住、恍悟、得意 |
 | text       | string | 是   | 要添加到表情包上的文字                                                             |
 
 - **请求示例**:
@@ -260,8 +305,8 @@ docker-compose up -d
   "code": 200,
   "message": "success",
   "data":  {
-    "backgrounds": ["哭", "慌张", "点赞", "震惊", "惊讶", "灵机一动", "好吃", "愣住", "恍悟", "得意"],
-    "total": 10
+    "background_list": ["哭", "慌张", "点赞", "震惊", "害羞", "投降", "惊讶", "灵机一动", "好吃", "愣住", "恍悟", "得意"],
+    "total": 12
   }
 
 }
@@ -270,9 +315,97 @@ docker-compose up -d
 - **错误响应**:
   - 500: 服务器内部错误
 
+### 获取配置
+
+- **URL**: `/config`
+- **Method**: GET
+- **描述**: 获取当前系统配置
+- **返回示例**:
+  - 返回完整的配置JSON对象
+
+### 更新配置
+
+- **URL**: `/config`
+- **Method**: POST
+- **Content-Type**: `application/json`
+- **描述**: 更新系统配置（需要管理员权限）
+- **请求体**: 完整的配置JSON对象
+- **返回示例**:
+  - `{"status": "success"}`: 更新成功
+  - `{"status": "error", "message": "错误信息"}`: 更新失败
+
+### 获取日志
+
+- **URL**: `/logs`
+- **Method**: GET
+- **描述**: 获取系统运行日志（需要管理员权限）
+- **返回示例**:
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "logs": "日志内容..."
+  }
+}
+```
+
+### 获取背景图片
+
+- **URL**: `/background/{background_name}`
+- **Method**: GET
+- **描述**: 获取指定名称的背景图片
+- **路径参数**:
+  - `background_name`: 背景图片名称
+- **返回**: 背景图片文件
+
+### 管理员密码设置
+
+- **URL**: `/admin/password/set`
+- **Method**: POST
+- **Content-Type**: `application/json`
+- **描述**: 首次设置管理员密码
+- **请求体**:
+  ```json
+  {"password": "新密码"}
+  ```
+- **返回示例**:
+  - 成功: `{"code": 200, "message": "密码设置成功", "data": {}}`
+  - 失败: `{"code": 400, "message": "密码已设置，请使用重置密码功能", "data": {}}`
+
+### 管理员密码验证
+
+- **URL**: `/admin/password/verify`
+- **Method**: POST
+- **Content-Type**: `application/json`
+- **描述**: 验证管理员密码
+- **请求体**:
+  ```json
+  {"password": "密码"}
+  ```
+- **返回示例**:
+  - 成功: `{"code": 200, "message": "验证成功", "data": {"token": "会话令牌"}}`
+  - 密码错误: `{"code": 401, "message": "密码错误", "data": {}}`
+  - 未设置密码: `{"code": 401, "message": "未设置密码", "data": {"need_setup": true}}`
+
+### 管理员密码重置
+
+- **URL**: `/admin/password/reset`
+- **Method**: POST
+- **Content-Type**: `application/json`
+- **描述**: 重置管理员密码
+- **请求体**:
+  ```json
+  {"old_password": "旧密码", "new_password": "新密码"}
+  ```
+- **返回示例**:
+  - 成功: `{"code": 200, "message": "密码重置成功", "data": {}}`
+  - 失败: `{"code": 401, "message": "旧密码错误", "data": {}}`
+
 ### 访问生成的图片
 
-生成的图片可 以通过返回的 `img_url` 直接访问，图片会在生成后根据配置的过期时间自动删除（默认 5 分钟）。
+生成的图片可以通过返回的 `img_url` 直接访问，图片会在生成后根据配置的过期时间自动删除（默认 5 分钟）。
 
 ## 字体说明
 
@@ -286,6 +419,7 @@ docker-compose up -d
 ## 日志系统
 
 日志文件位于 `data/log.txt`，记录了系统运行状态和错误信息。
+系统提供了 `/logs` API接口，可以通过管理页面查看最近的日志记录。
 
 ## 常见问题
 
@@ -297,10 +431,19 @@ docker-compose up -d
 
 1. 将新的表情图片放入 `resource/` 目录
 2. 在配置文件中的 `resource.resource_paths` 中添加对应的映射关系
+3. 重启服务或通过管理页面更新配置
 
 ### 3. 如何修改文字样式？
 
 可以修改 `drawer/meme_draw.py` 文件中的 `_draw_centered_text` 方法来自定义文字样式，包括颜色、大小、描边等。
+
+### 4. 如何重置管理员密码？
+
+如果忘记了管理员密码，可以直接编辑配置文件 `data/conf/conf.json`，删除 `admin` 字段，然后重新访问管理页面进行首次密码设置。
+
+### 5. 如何修改图片过期时间？
+
+可以在配置文件中的 `storage.image_expiry_time` 项设置图片过期时间（秒）。
 
 ## 许可证
 本项目基于 [MIT License](LICENSE) 传播，仅供个人学习交流使用，不拥有相关素材的版权。进行分发时应注意不违反素材版权与官方二次创造协定。
