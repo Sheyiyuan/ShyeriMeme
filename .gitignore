@@ -8,3 +8,4 @@ temp_avatarhttp:
 .marscode/
 **/.vscode/
 **/node_modules/
+**/pnpm-lock.yaml

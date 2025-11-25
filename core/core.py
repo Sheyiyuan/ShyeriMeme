@@ -18,16 +18,18 @@ DEFAULT_CONFIG = {
     },
     "resource":{
         "resource_paths":{
+            "得意":"resource/shyeri_proud.png",
             "哭":"resource/shyeri_cry.png",
             "慌张":"resource/shyeri_fear.png",
             "点赞":"resource/shyeri_good.png",
             "震惊":"resource/shyeri_shocked.png",
+            "害羞":"resource/shyeri_shy.png",
+            "投降":"resource/shyeri_surrender.png",
             "惊讶":"resource/shyeri_surprise.png",
             "灵机一动":"resource/shyeri_ting.png",
             "好吃":"resource/shyeri_yummy.png",
             "愣住":"resource/shyeri_speechless.png",
             "恍悟":"resource/shyeri_soga.png",
-            "得意":"resource/shyeri_proud.png",
         },
         "chinese_font_path":"resource/fonts/STHeitiMedium.ttc",
         "english_font_path":"resource/fonts/Times New Roman.ttf"
