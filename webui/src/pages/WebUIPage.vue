@@ -244,29 +244,40 @@ onMounted(() => {
 
 // 添加下载表情包函数
 const downloadImage = async () => {
-  if (!generatedImage.value) return
+  if (!inputText.value.trim()) {
+    showToastMessage('请输入文字内容', 'error')
+    return
+  }
 
+  loading.value = true
   try {
-    // 处理图片下载
-    const response = await fetch(generatedImage.value)
-    const blob = await response.blob()
-    const url = window.URL.createObjectURL(blob)
+    // 直接调用与生成相同的API接口
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        background: selectedBackground.value,
+        text: inputText.value.trim()
+      })
+    })
 
-    // 创建临时链接用于下载
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `橘雪莉表情包_${Date.now()}.jpg`
-    document.body.appendChild(link)
-    link.click()
+    if (response.ok) {
+      const data = await response.json()
+      const imgUrl = data.data.img_url
 
-    // 清理
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
-
-    showToastMessage('表情包下载成功！', 'success')
+      // 直接打开图片URL，让浏览器处理下载
+      window.open(imgUrl, '_blank')
+      showToastMessage('表情包下载链接已打开！', 'success')
+    } else {
+      showToastMessage('获取下载链接失败，请重试', 'error')
+    }
   } catch (error) {
-    console.error('下载表情包出错:', error)
-    showToastMessage('表情包下载失败，请重试', 'error')
+    console.error('获取下载链接出错:', error)
+    showToastMessage('获取下载链接时发生错误', 'error')
+  } finally {
+    loading.value = false
   }
 }
 
