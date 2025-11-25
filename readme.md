@@ -5,6 +5,7 @@
 ![GitHub License](https://img.shields.io/github/license/Sheyiyuan/ShyeriMeme?style=flat-square&color=green)
 ![Python Version](https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square&logo=python)
 ![FastAPI Version](https://img.shields.io/badge/fastapi-0.100%2B-009688?style=flat-square&logo=fastapi)
+![Vue Version](https://img.shields.io/badge/vue-3.x-42b883?style=flat-square&logo=vue.js)
 ![Docker Support](https://img.shields.io/badge/docker-supported-blue?style=flat-square&logo=docker)
 
 <p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;">简单·快速·低占用·可扩展</p>
@@ -16,6 +17,8 @@
 <p></p>
 
 <img src="doc/webui.webp" alt="webui 页面" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+<p style="font-size: 1.2rem; color: #1177aa; font-weight: bold; margin: 1.5rem 0;"><a href="https://shyeri.sheyiyuan.cn/webui">点击此处立刻体验</a></p>
 
 </div>
 
